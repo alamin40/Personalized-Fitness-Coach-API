@@ -12,3 +12,11 @@ def create_user(db: Session, user: schemas.UserCreate):
 # Service to get a user by ID
 def get_user(db: Session, user_id: int):
     return db.query(models.User).filter(models.User.id == user_id).first()   
+  
+  # Service to log a workout
+def log_workout(db: Session, workout_log: schemas.WorkoutLogCreate):
+    db_log = models.WorkoutLog(user_id=workout_log.user_id, workout=workout_log.workout, reps=workout_log.reps)
+    db.add(db_log)
+    db.commit()
+    db.refresh(db_log)
+    return db_log
