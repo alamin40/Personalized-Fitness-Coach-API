@@ -17,5 +17,18 @@ class User(BaseModel):
     class Config:
         orm_mode = True
 
+# Schema for logging a workout
+class WorkoutLogCreate(BaseModel):
+    user_id: int
+    workout: str
+    reps: int
 
+# Schema for returning a logged workout
+class WorkoutLog(BaseModel):
+    id: int
+    user_id: int
+    workout: str
+    reps: int
 
+    class Config:
+        orm_mode = True
