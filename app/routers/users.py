@@ -10,4 +10,8 @@ class User(BaseModel):
 
 users_db = []
 
+@router.post("/users/")
+async def create_user(user: User):
+    users_db.append(user)
+    return {"message": "User registered successfully", "user": user}
 
